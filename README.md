@@ -1,4 +1,8 @@
-
+git branch -M main
+  945  git push -u origin main
+  946  git pull origin main --rebase
+  947  git push -u origin main
+  948  git init
 ```
 workspace_dc
 ├─ dcenv
