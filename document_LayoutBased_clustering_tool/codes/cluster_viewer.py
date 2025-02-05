@@ -4,8 +4,8 @@ import cv2
 from matplotlib import pyplot as plt
 
 # Paths
-excel_path = "/home/harish/document_LayoutBased_clustering_tool/cluster_information/image_clusters_kmeans.xlsx"
-image_folder = "/home/harish/document_LayoutBased_clustering_tool/data_images/test1_datas"
+excel_path = "/home/harish/workspace_dc/document_LayoutBased_clustering_tool/cluster_information/image_clusters_kmeans.xlsx"
+image_folder = "/home/harish/workspace_dc/document_LayoutBased_clustering_tool/data_images"
 
 # Read the Excel file
 df = pd.read_excel(excel_path)
@@ -13,8 +13,9 @@ df = pd.read_excel(excel_path)
 # Function to display images from a specific cluster
 def show_images_from_cluster(cluster_id, num_images=5):
     """Display images belonging to a specific cluster."""
+    
     # Filter images belonging to the requested cluster
-    cluster_images = df[df['cluster'] == cluster_id]['filename'].tolist()
+    cluster_images = df[df['Cluster'] == cluster_id]['ISIN'].tolist()
 
     # Select only the first 'num_images' images
     cluster_images = cluster_images[:num_images]
@@ -40,9 +41,9 @@ def show_images_from_cluster(cluster_id, num_images=5):
             print(f" Image not found: {image_path}")
 
     plt.show()
+    
 
 # Example: Show images from Cluster 11
 show_images_from_cluster(cluster_id=20, num_images=5)
 
 
-#http://192.168.1.220/harish.senthil/doc_clust.git 

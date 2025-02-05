@@ -7,7 +7,7 @@ from tensorflow.keras.applications import VGG16
 from tensorflow.keras.applications.vgg16 import preprocess_input
 
 # Path to your images
-path = "/home/harish/document_LayoutBased_clustering_tool/data_images/test1_datas" #path to the images
+path = "/home/harish/workspace_dc/document_LayoutBased_clustering_tool/data_images" #path to the images
 
 # Load pre-trained VGG16 model + higher level layers
 model = VGG16(weights='imagenet', include_top=False, pooling='avg')
@@ -45,7 +45,7 @@ image_cluster_pairs = list(zip(image_paths, clusters))
 
 # Prepare data for saving
 data = {
-    "Image Name": [os.path.basename(image_path) for image_path, _ in image_cluster_pairs],
+    "ISIN": [os.path.basename(image_path) for image_path, _ in image_cluster_pairs],
     "Cluster": [cluster for _, cluster in image_cluster_pairs],
 }
 
@@ -53,7 +53,7 @@ data = {
 df = pd.DataFrame(data)
 
 # Save to Excel file
-excel_filename = "/home/harish/document_LayoutBased_clustering_tool/cluster_information/image_clusters_kmeans.xlsx"
+excel_filename = "/home/harish/workspace_dc/document_LayoutBased_clustering_tool/cluster_information/image_clusters_kmeans.xlsx"
 df.to_excel(excel_filename, index=False)
 
 print(f"Results saved to {excel_filename}")

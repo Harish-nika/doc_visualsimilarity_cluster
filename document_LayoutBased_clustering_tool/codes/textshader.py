@@ -45,7 +45,7 @@ def analyze_pdf(pdf_paths, output_image_path):
         skeleton = analyze_doc_skeleton(pdf_page, scale=4)
         skeleton.save(f"{output_image_path}/{pdf_name}-{page_no}.png")
         
-        with sqlite3.connect("/home/harish/document_LayoutBased_clustering_tool/Database/document_clustering_sample.db", timeout=120) as conn:
+        with sqlite3.connect("/home/harish/workspace_dc/document_LayoutBased_clustering_tool/Database/document_clustering_sample.db", timeout=120) as conn:
                 cursor = conn.cursor()
                 cursor.execute('''
                     UPDATE doc_clustering_sample
@@ -57,7 +57,7 @@ def analyze_pdf(pdf_paths, output_image_path):
 if __name__ == "__main__":
     pdf_paths = []
     
-    with sqlite3.connect("/home/harish/document_LayoutBased_clustering_tool/Database/document_clustering_sample.db", timeout=60) as conn:
+    with sqlite3.connect("/home/harish/workspace_dc/document_LayoutBased_clustering_tool/Database/document_clustering_sample.db", timeout=60) as conn:
         db = conn.cursor()
         records = numrows(db, query = "SELECT * FROM doc_clustering_sample where status = ''")
         
@@ -71,5 +71,5 @@ if __name__ == "__main__":
             print("*** Entire Process Completed ***")
             sys.exit(0)
     
-    output_image_path = "/home/harish/document_LayoutBased_clustering_tool/data_images/test1_datas" # zip -r doc_clustering_5K.zip final_out_set_2 (Command for zipping the folder)
+    output_image_path = "/home/harish/workspace_dc/document_LayoutBased_clustering_tool/data_images" # zip -r doc_clustering_5K.zip final_out_set_2 (Command for zipping the folder)
     analyze_pdf(pdf_paths[:50], output_image_path)  # For testing purpose, only 50 PDFs are processed
